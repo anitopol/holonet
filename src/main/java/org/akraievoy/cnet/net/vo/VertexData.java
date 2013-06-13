@@ -23,6 +23,7 @@ import org.akraievoy.holonet.exp.store.Streamable;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 
 import static org.akraievoy.cnet.net.vo.StoreUtils.*;
 import static org.akraievoy.cnet.net.vo.StoreUtils.escapeByte;
@@ -145,6 +146,17 @@ public class VertexData implements Streamable {
       throw new IllegalStateException("read-only mode");
     }
     return data.set(index, elem);
+  }
+
+  public double median() {
+    double[] data0 = getData();
+    Arrays.sort(data0);
+
+    if (data0.length % 2 == 1) {
+      return data0[data0.length / 2];
+    }
+
+    return (data0[data0.length / 2 - 1] + data0[data0.length / 2]) / 2;
   }
 
   public String toString() {

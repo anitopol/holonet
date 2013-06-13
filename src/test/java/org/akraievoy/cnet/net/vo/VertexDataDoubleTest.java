@@ -44,4 +44,26 @@ public class VertexDataDoubleTest extends TestCase {
     assertEquals(2.0, vertexData.get(1));
     assertEquals(3.0, vertexData.get(2));
   }
+
+  public void testMedian() {
+    final VertexData vdd5 = new VertexData(5);
+    vdd5.set(2, 1.0);
+    vdd5.set(1, 2.0);
+    vdd5.set(0, 3.0);
+    vdd5.set(3, 5.0);
+    vdd5.set(4, 4.0);
+
+    assertEquals(3.0, vdd5.median());
+
+    final VertexData vdd6 = new VertexData(6);
+    vdd6.set(2, 1.0);
+    vdd6.set(1, 2.0);
+    vdd6.set(0, 3.0);
+    vdd6.set(3, 5.0);
+    vdd6.set(4, 4.0);
+    vdd6.set(5, 0.0);
+
+    assertEquals(2.5, vdd6.median());
+  }
+
 }
